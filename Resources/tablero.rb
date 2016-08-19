@@ -574,6 +574,7 @@ require_relative "design"
 	def updateShipCount
 		$shipscount = $shipscount - 1
 	end
+
 	def setupMyShips #Colocar Barcos en Tab1 (tabla de usuario)
 		safe=TRUE #bandera
 		
@@ -783,8 +784,16 @@ require_relative "design"
 	
 	def printInfo
 		refreshCounts
-		puts "Count on tab1 #{$countOnTab1}".white
-		puts "Count on tab2 #{$countOnTab2}".white
+		puts "Puntaje #{$player1} : #{$countOnTab2}".white
+		puts "Puntaje #{$player2} : #{$countOnTab1}".white
+		if $countOnTab2 > $countOnTab1 && $countOnTab2 != $countOnTab1 then
+			puts "Vas ganando!".green
+		else
+			puts "Vas Perdiendo!".red
+		end	
+		if $countOnTab2 == $countOnTab1 then
+			puts "Van Empatados".red
+		end	
 	end
 	
 		def isGameOverOnTab1? #comprueba si el juego se acabo en la tab 1
@@ -793,6 +802,10 @@ require_relative "design"
 		else
 			return FALSE
 		end	
+		if $tranships + $incident*2 + $birrems*3 + $trirems*4 == $countOnTab1 && $countOnTab1 > $countOnTab2 then
+			puts "Te gano la computadora".red
+			waitForInput
+		end			
 	end
 	
 	def isGameOverOnTab2? #comprueba si el juego se acabo en la tab 1
@@ -800,6 +813,10 @@ require_relative "design"
 			return TRUE
 		else
 			return FALSE
+		end	
+		if $tranships + $incident*2 + $birrems*3 + $trirems*4 == $countOnTab1 && $countOnTab2 > $countOnTab1 then
+			puts "Ganaste!".green
+			waitForInput
 		end	
 	end
 #Llenar tabs con agua
