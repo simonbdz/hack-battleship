@@ -548,6 +548,7 @@ require_relative "design"
 							puts "Coordenada Incorrecta".red
 							puts "HINT: Las coordenadas deben de la siguiente forma: a1".yellow
 							puts
+							sleep 0.5
 						end	
 					break if ($row >= 1 && $row <= rowmax && $col >= 1 && $col <= colmax)
 				end
@@ -605,9 +606,6 @@ require_relative "design"
 				end
 			end
 			
-
-			printTab1
-			
 			#colocar birrems
 			for i in 1..$birrems do #$colocar tantos BIRREMS haya en la variable global
 				clear
@@ -618,6 +616,9 @@ require_relative "design"
 				
 					if horv == "h" then #caso horizontal
 						loop do
+							clear
+							printTab1
+							askHorv( "BIRREME" )							
 							askCoordinates 10,8
 								if $tab1[$row-1][$col-1] == "≈" && $tab1[$row-1][$col] == "≈" && $tab1[$row-1][$col+1] == "≈" then
 									for i in 0..2 do
@@ -630,11 +631,15 @@ require_relative "design"
 									end
 								else
 									puts"Casilla ocupada, vuelva a intentar".red
+									sleep 0.5
 								end	
 							break if flag
 						end
 					else #caso vertical
 							loop do
+									clear
+									printTab1
+									askHorv( "BIRREME" )								
 									askCoordinates 8,10
 									if $tab1[$row-1][$col-1] == "≈" && $tab1[$row][$col-1] == "≈" && $tab1[$row+1][$col-1] == "≈" then
 										for i in 0..2 do
@@ -647,6 +652,7 @@ require_relative "design"
 										end
 									else
 										puts"Casilla ocupada, vuelva a intentar"
+										sleep 0.5
 									end	
 								break if flag
 							end
@@ -664,6 +670,9 @@ require_relative "design"
 				
 				if horv == "h" then #caso horizontal
 					loop do
+						clear
+						printTab1
+						askHorv( "INCIDENTARIA" )						
 						askCoordinates 10,9
 								if $tab1[$row-1][$col-1] == "≈" && $tab1[$row-1][$col] == "≈"  then #doble condicion
 									for i in 0..1 do
@@ -676,6 +685,7 @@ require_relative "design"
 									end
 								else
 									puts"Casilla ocupada, vuelva a intentar".red
+									sleep 0.5
 								end	
 					break if flag
 					end
@@ -683,6 +693,9 @@ require_relative "design"
 				else #caso vertical
 					for i in 1..$incident do
 						loop do
+							clear
+							printTab1
+							askHorv( "INCIDENTARIA" )																			
 							askCoordinates 9,10
 								
 							if $tab1[$row-1][$col-1] == "≈" && $tab1[$row][$col-1] == "≈" then
@@ -696,6 +709,7 @@ require_relative "design"
 								end
 							else
 								puts"Casilla ocupada, vuelva a intentar".red
+								sleep 0.5
 							end	
 						break if flag
 						end
@@ -709,7 +723,7 @@ require_relative "design"
 					clear
 					printTab1
 					askHorv( "PEÑERO" )
-						askCoordinates 10,10
+					askCoordinates 10,10
 								
 						if $tab1[$row-1][$col-1] == "≈" then #si hay agua, $colocar barco
 							$tab1[$row-1][$col-1] = "P"
@@ -718,6 +732,7 @@ require_relative "design"
 							i = i + 1
 						else
 							puts"Casilla ocupada, vuelva a intentar".red
+							sleep 0.5
 						end	
 					break if (i == $tranships)
 				end
